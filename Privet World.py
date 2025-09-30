@@ -3,8 +3,8 @@ import random
 
 # 俄文字母分類
 russian_vowels = 'аеёиоуыэюя'
-russian_consonants = 'бвгджзйклмнпрстфхцчшщ'
-russian_alphabet = russian_vowels + russian_consonants
+russian_consonants = 'бвгджзйклмнпрстфхцчшщ' #子音
+russian_alphabet = russian_vowels + russian_consonants #母音
 
 # 造字函式
 """
@@ -16,6 +16,16 @@ russian_alphabet = russian_vowels + russian_consonants
 
 """
 def generate_fake_word(length=None):
+    """
+    生成一個類似俄語的假字。
+
+    邏輯說明：
+    - 若未指定長度，則隨機選擇 4 到 8 之間的整數作為目標字長。
+    - 重複生成音節，直到組合後的字長達到或超過指定長度。
+    - 每個音節由一個子音 + 一個母音組成，有 50% 機率在尾端再加一個子音。
+    - 所有音節合併後，截斷至指定長度並將首字母大寫。
+    - 回傳這個假字。
+    """
     length = length or random.randint(4, 8)
     syllables = []
     while len(''.join(syllables)) < length:
@@ -27,7 +37,7 @@ def generate_fake_word(length=None):
     word = ''.join(syllables)[:length]
     return word.capitalize()
 
-# ✩造句函式
+# 造句函式
 """
 主語（主格） → 動詞（人稱變化） → 補語（受格、副詞）
 """
@@ -106,6 +116,7 @@ def create_ui():
     window.mainloop()
 
 
-# ✩執行介面
+# 執行介面
 if __name__ == "__main__":
     create_ui()
+
